@@ -1,0 +1,770 @@
+/*-----------------------------------------------Custon Properties--------------------------------*/
+:root {
+  --firts-color: #1d942d;
+  --firts-alpha-color: rgba(30, 98, 56, 0.75);
+  --second-color: #14192d;
+  --second-alpha-color: rgba(20, 25, 45, 0.75);
+  --third-color: #501464;
+  --third-alpha-color: rgba(80, 20, 100, 0.75);
+  --white-color: #fff;
+  --gray-light-color: #f3f3f3;
+  --gray-color: #ccc;
+  --gray-dark-color: #666;
+  --blak-color: #000;
+  --link-color: #509ee3;
+  --title-color: #333;
+  --text-color: #222;
+  --white-alpha-color: rgba(255, 255, 255, 0.5);
+  --black-alpha-color: rgba(0, 0, 0, 0.5);
+  --font: "Raleway", sans-serif;
+  --max-width: 1200px;
+  /*para el container de la cabecerra*/
+  --hader-height: 4rem;
+  /*para la altura del menu*/
+}
+
+/*---------------------------------------------------Reset----------------------------------------*/
+html {
+  box-sizing: border-box;
+  font-family: var(--font);
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  color: var(--text-color);
+}
+
+a {
+  color: var(--link-color);
+  transition: all 0.5s ease-out;
+}
+
+a:hover {
+  opacity: 0.75;
+}
+
+h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+h3 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+h4 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+h5 {
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+h6 {
+  margin: 0;
+  font-size: 0.7rem;
+}
+
+/* img {
+  max-width: 100%;
+  height: auto;
+} */
+
+p {
+  line-height: 1.6;
+}
+
+/*------------------------------------------------Components----------------------------------------------*/
+
+/*-----icicio carrusel---------------*/
+
+@keyframes carrusel-slides {
+  0% {
+    transform: translateX(0%);
+  }
+  25% {
+    transform: translateX(-25%);
+  }
+  50% {
+    transform: translateX(-50%);
+  }
+  75% {
+    transform: translateX(-75%);
+  }
+}
+
+.carousel {
+  margin: 2rem auto;
+  padding: 2rem 0;
+  max-width: 100vw;
+  text-align: center;
+  background-color: var(--carousel-bg-color);
+  overflow-x: hidden;
+}
+
+.carousel .slides {
+  padding-left: 0;
+  display: flex;
+  width: 400%;
+  list-style: none;
+  transition: transform 0.5s ease-in-out;
+  animation: carrusel-slides 12s ease-in-out 3s;
+  /* animation: carrusel-slides 12s ease-in-out 3s;      12s: es lo que dura total  3s: espera para empezar, se puede poner infinito */
+}
+
+.carousel input {
+  display: none;
+}
+
+.carousel label {
+  border: medium solid var(--gray-dark-color);
+  border-radius: 50%;
+  margin: 0 0.25rem;
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+  cursor: pointer;
+}
+
+#slide-1:checked ~ .slides {
+  transform: translateX(0%);
+}
+#slide-2:checked ~ .slides {
+  transform: translateX(-25%);
+}
+#slide-3:checked ~ .slides {
+  transform: translateX(-50%);
+}
+#slide-4:checked ~ .slides {
+  transform: translateX(-75%);
+}
+
+#slide-1:checked ~ .slides-nav label#dot-1,
+#slide-2:checked ~ .slides-nav label#dot-2,
+#slide-3:checked ~ .slides-nav label#dot-3,
+#slide-4:checked ~ .slides-nav label#dot-4 {
+  background-color: var(--gray-dark-color);
+}
+
+/*-----fin carrusel---------------*/
+
+/*-----inicio contact form---------------*/
+.contact-form {
+  margin: 2rem auto;
+  padding: 1rem;
+
+  max-width: 800px;
+}
+
+.contact-form > * {
+  padding: 0.5rem;
+  margin: 1rem auto;
+  display: block;
+  width: 100%;
+}
+
+.contact-form input,
+.contact-form textarea {
+  font-size: 0.85rem;
+  font-family: var(--font);
+}
+
+.contact-form input {
+  border: 0;
+  padding-left: 0;
+  border-bottom: thin solid var(--gray-dark-color);
+}
+.contact-form input[type="submit"] {
+  margin-top: 0;
+  cursor: pointer;
+  transition: all 0.5s ease-out;
+}
+.contact-form input[type="submit"]:hover {
+  opacity: 0.75;
+}
+.contact-form textarea::placeholder {
+  color: var(--gray-dark-color);
+}
+.contact-form textarea {
+  border: thin solid var(--gray-dark-color);
+  resize: none;
+}
+
+.contact-form-response {
+  padding: 1rem;
+  width: 400px;
+  text-align: center;
+  background-color: var(--white-color);
+}
+.contact-form-response svg {
+  margin-top: 2rem;
+  width: 4rem;
+  height: 4rem;
+  fill: var(--firts-color);
+}
+
+.modal#gracias:target {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media screen and (min-width: 1024px) {
+  .contact-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 1rem;
+  }
+  .contact-form input,
+  .contact-form textarea {
+    font-size: 1rem;
+  }
+
+  .contact-form textarea,
+  .contact-form-loader {
+    grid-column: span 2;
+  }
+  .contact-form input[type="submit"] {
+    margin-left: 0;
+  }
+}
+
+/*-----fin contact form---------------*/
+
+/*--------heroimage---------*/
+
+.hero-image {
+  background-image: var(--hero-image);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: var(--hero-attachment);
+}
+
+.hero-image-opacity {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  text-align: center;
+  background-color: var(--hero-opacity-color);
+}
+.hero-image-title {
+  font-size: 7.5vw;
+  color: var(--hero-text-color);
+}
+
+/*---menu---*/
+.menu-btn {
+  outline: thin solid var(--firts-color);
+  border: 0;
+  cursor: pointer;
+  background-color: var(--second-color);
+}
+
+/* esto es para darle color a los botones*/
+.menu-btn svg {
+  fill: var(--firts-color);
+}
+
+.menu {
+  position: fixed;
+  left: 0;
+  bottom: var(--hader-height);
+  width: 100%;
+  background-color: var(--second-color);
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  pointer-events: none;
+  /*esto es para que no reaccionen los vinculos estano transparente*/
+  transition: opacity 0.5s ease;
+}
+
+.menu.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.menu a {
+  padding: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  color: var(--firts-color);
+}
+
+.menu a:hover {
+  color: var(--white-color);
+  background-color: var(--firts-color);
+}
+
+@media screen and (min-width: 1024px) {
+  .menu-btn {
+    display: none;
+  }
+
+  .menu {
+    opacity: 1;
+    pointer-events: auto;
+    position: static;
+    width: auto;
+    flex-direction: row;
+  }
+
+  .menu a {
+    padding: 0 1rem;
+    font-size: 1rem;
+  }
+
+  .menu a:last-child {
+    padding-right: 0;
+  }
+
+  .menu a:hover {
+    background-color: transparent;
+  }
+}
+
+/*-  inicio---ventana modal------*/
+.modal {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--black-alpha-color);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 1s;
+}
+.modal-content {
+  position: relative; /*para darle referencia al boton de cierre*/
+}
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.modal-close svg {
+  width: 3rem;
+  height: 3rem;
+  fill: var(--firts-color);
+}
+/*
+Esta es la forma para un solo componente
+
+.modal#trabajo-1:target {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+*/
+/*asi es para muchos
+[id|=trabajo------| esto quiere decir que cualquier atributo que comience con la palabra "trasbajo"]
+*/
+.modal[id|="trabajo"]:target {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/*-  fin---ventana modal------*/
+
+/*---componente-----progressBar----*/
+progress {
+  width: 100%;
+  height: 1rem;
+  background-color: var(--gray-color);
+}
+/* Esto asigna color a la barra total*/
+progress::-webkit-progress-bar {
+  background-color: var(--gray-color);
+}
+/* Esto asigna color al %---*/
+progress::-webkit-progress-value {
+  background-color: var(--gray-dark-color);
+}
+/*Esto es para Firefox, que no aplica con---webkit-progress-value*/
+progress::-moz-progress-value {
+  background-color: var(--gray-dark-color);
+}
+.progress {
+  margin: 1rem auto;
+}
+
+.progress > p {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+}
+
+/*----------------------------------------------Utilities-------------------------------------------*/
+
+/*-inicio--carrusel-------*/
+
+.avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+
+/*-fin--carrusel-------*/
+
+.bg-gray-light {
+  background-color: var(--gray-light-color);
+}
+
+.box-sadow-1 {
+  box-shadow: 0.25rem 0.25rem 1rem rgba(0, 0, 0, 0.25);
+}
+
+/*-------esta clase es para un boton , que se pueda reutilizar*/
+.btn {
+  border-radius: 0.5rem;
+  padding: 1rem;
+  display: inline-block;
+  /*esto es prque los enlaces son elementos de linea
+    y no se le puede dar pading a los costados*/
+  width: 200px;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  color: var(--white-color);
+  background-color: var(--firts-color);
+}
+
+/*----este container es de la cabecera-----*/
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: var(--max-width);
+}
+
+/*Esta clase hace que la imagen se vea en escala de grises*/
+.gray-scale {
+  filter: grayscale(1);
+}
+
+/*---esta clase hace que no se muestre el boton de cerrar*/
+.none {
+  display: none;
+}
+
+/*--Esta clase es para separar las Secciones----*/
+.section {
+  padding: 4rem 1rem;
+}
+.section-title {
+  border-top: thin solid var(--firts-color);
+  border-bottom: thin solid var(--firts-color);
+  margin: 2rem auto;
+  padding: 0.5rem 1rem;
+  width: 250px;
+  text-align: center;
+  color: var(--title-color);
+}
+
+.text-first-color {
+  color: var(--firts-color);
+}
+
+/*------alinear textos*/
+.text-center {
+  text-align: center;
+}
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+
+@media screen and (min-width: 1024px) {
+  .full-lg-screen {
+    width: 100%;
+    min-height: 100vh;
+  }
+
+  .text-lg-center {
+    text-align: center;
+  }
+  .text-lg-left {
+    text-align: left;
+  }
+  .text-lg-right {
+    text-align: right;
+  }
+}
+
+/*----------------------------------------------Site styles------------------------------------------------*/
+/*---imagen de about o acera---*/
+.foto-4x4 {
+  width: 100%;
+}
+/*---imagen de about o acera---*/
+
+/*---Esto le da espacio a los articulos que estan dentro de about--- */
+.about > article {
+  margin-bottom: 2rem;
+}
+
+.contact-card {
+  margin: 1rem auto;
+  padding: 1rem;
+  width: 100%;
+  height: 144px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.contact-card > svg {
+  width: 2rem;
+  height: 2rem;
+  fill: var(--firts-color);
+}
+.contact-card > small {
+  margin-top: -1rem;
+}
+
+/*-------footer--------*/
+
+.footer {
+  margin-bottom: var(--hader-height);
+  padding: 0.5rem;
+  text-align: center;
+  color: var(--white-color);
+  background-color: var(--third-color);
+}
+
+/*-------ajustar la cabecera---para movile---*/
+.header {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  padding: 1rem;
+  z-index: 999;
+  /*para que nada la tape*/
+  width: 100%;
+  /*al poner posicion fija pierede las propiedades de alto y ancho, por eso se ajusta de nuevo*/
+  height: var(--hader-height);
+  background-color: var(--second-color);
+}
+
+.header > .container {
+  /* ' > ' hijo directo*/
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo a {
+  color: var(--firts-color);
+  font-weight: bold;
+  font-size: 2rem;
+  text-decoration: none;
+}
+.portfolio-card {
+  position: relative; /*para que el hover tenga position absolut y se ubique encima */
+  width: 100%;
+  margin: 0 auto;
+  display: block;
+}
+.portfolio-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /*esto es para que las imagenes no pierdan su proporcion*/
+}
+
+.portfolio-card-info {
+  position: absolute; /*esto hace que se posiciones con respecto al relative de porfolio-card*/
+  top: 0;
+  left: 0; /*Esto lo posiciona sobre su elemento padre*/
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  background-color: var(--firts-alpha-color);
+  color: var(--white-color);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.5s ease-in-out;
+}
+
+.portfolio-card-info > div {
+  padding: 1rem;
+  border: thin solid var(--white-color);
+  width: 100%;
+  height: 100%;
+}
+.portfolio-card:hover .portfolio-card-info {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/*-inicio----maquetado del modal-----------*/
+.portfolio-modal {
+  background-color: var(--white-color);
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  padding: 1rem;
+}
+.portfolio-modal h3 {
+  border-bottom: medium solid var(--firts-color);
+  margin: 1rem auto;
+  padding: 0.5rem 0;
+  color: var(--title-color);
+}
+
+.portfolio-details {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  grid-auto-rows: 2rem;
+}
+.portfolio-details b {
+  color: var(--firts-color);
+}
+
+/*-fin----maquetado del modal-----------*/
+
+/*------------ Diseño de las tarjetas---------- */
+.service-card {
+  margin: 1rem auto;
+  padding: 1rem;
+  text-align: center;
+}
+
+/* -------------diseño del titulo----------- */
+.service-card h3 {
+  color: var(--title-color);
+}
+
+/* ------------diseño del logo de la tarjeta---------- */
+.service-card svg {
+  fill: var(--firts-color);
+  margin-bottom: 1.25rem;
+}
+
+.social-media a {
+  padding: 0 11px;
+  text-decoration: none;
+}
+
+.social-media svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+@media screen and (min-width: 786px) {
+  .contact-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 48%);
+    justify-content: space-between;
+  }
+
+  .portfolio > .container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .portfolio .section-title {
+    grid-column: span 2;
+  }
+
+  /*---inicio--ventana modal-----*/
+  .portfolio-modal {
+    flex-direction: row;
+    max-width: 800px;
+  }
+
+  .portfolio-info {
+    margin-left: 1rem;
+    /*---Esto solo alinea este hijo en el display flex-------*/
+    align-self: center;
+  }
+
+  /*---fin--ventana modal-----*/
+
+  .services > .container {
+    display: grid;
+    grid-template-columns: repeat(2, 45%);
+    /* 45% y no 1fr, para que quede estpacio a los lados*/
+    justify-content: space-between;
+    align-content: center;
+    /* align-content: center; alinea toda la grid al centro */
+  }
+  .services .section-title {
+    grid-column: span 2;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .about {
+    display: grid;
+    /*--Con el 30% me sobra espacio---*/
+    grid-template-columns: repeat(3, 30%);
+    /*---con esto reparto el espacio sobrante---*/
+    justify-content: space-between;
+    align-content: center;
+  }
+
+  .contact-cards {
+    grid-template-columns: repeat(4, 24%);
+  }
+
+  .footer {
+    margin-bottom: 0;
+  }
+
+  .header {
+    position: sticky;
+    /*desplaza los elementos hacia abajo y no los tapa*/
+    top: 0;
+    padding: 0.5rem;
+    height: calc(var(--header-height)- 0.5rem);
+  }
+
+  .portfolio > .container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .portfolio .section-title {
+    grid-column: span 3;
+  }
+
+  /* --------inicio---- Seccion Servicios */
+  .services > .container {
+    /* display: grid;---------esto ya esta definido */
+    grid-template-columns: repeat(3, 30%);
+    /* 45% y no 1fr, para que quede estpacio a los lados*/
+    /* justify-content: space-between;
+    align-content: center;-----------esto ya esta definido  */
+    /* align-content: center; alinea toda la grid al centro */
+  }
+  .services .section-title {
+    grid-column: span 3;
+  }
+  /* --------fin--- Seccion Servicios */
+}
